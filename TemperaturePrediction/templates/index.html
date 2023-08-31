@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Predictions</title>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+            background-color: #87ceeb; /* Blue sky background color */
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: coral;
+        }
+        
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: cornsilk;
+            border: none;
+            cursor: pointer;
+        }
+        
+        h2 {
+            margin-top: 20px;
+        }
+        
+        /* Cloud Animation */
+        @keyframes moveClouds {
+            0% {
+                margin-left: 1000px;
+            }
+            100% {
+                margin-left: -1000px;
+            }
+        }
+
+        .cloud {
+            width: 200px;
+            height: 60px;
+            background: #fff;
+            border-radius: 200px;
+            position: absolute;
+            animation: moveClouds 15s linear infinite;
+        }
+
+        .cloud:before,
+        .cloud:after {
+            content: '';
+            position: absolute;
+            background: #fff;
+            width: 100px;
+            height: 80px;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            border-radius: 100px;
+            -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+        }
+
+        .cloud:after {
+            width: 120px;
+            height: 120px;
+            top: -55px;
+            left: auto;
+            right: 15px;
+        }
+
+        .x1 {
+            -webkit-animation: moveClouds 15s linear infinite;
+            -moz-animation: moveClouds 15s linear infinite;
+            -o-animation: moveClouds 15s linear infinite;
+        }
+
+        .x2 {
+            left: 200px;
+            -webkit-transform: scale(0.6);
+            -moz-transform: scale(0.6);
+            transform: scale(0.6);
+            opacity: 0.6;
+            -webkit-animation: moveClouds 25s linear infinite;
+            -moz-animation: moveClouds 25s linear infinite;
+            -o-animation: moveClouds 25s linear infinite;
+        }
+
+        .x3 {
+            left: -250px;
+            top: -200px;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            transform: scale(0.8);
+            opacity: 0.8;
+            -webkit-animation: moveClouds 20s linear infinite;
+            -moz-animation: moveClouds 20s linear infinite;
+            -o-animation: moveClouds 20s linear infinite;
+        }
+
+        .x4 {
+            left: 470px;
+            top: -250px;
+            -webkit-transform: scale(0.75);
+            -moz-transform: scale(0.75);
+            transform: scale(0.75);
+            opacity: 0.75;
+            -webkit-animation: moveClouds 18s linear infinite;
+            -moz-animation: moveClouds 18s linear infinite;
+            -o-animation: moveClouds 18s linear infinite;
+        }
+
+        .x5 {
+            left: -150px;
+            top: -150px;
+            -webkit-transform: scale(0.65);
+            -moz-transform: scale(0.65);
+            transform: scale(0.65);
+            opacity: 0.65;
+            -webkit-animation: moveClouds 22s linear infinite;
+            -moz-animation: moveClouds 22s linear infinite;
+            -o-animation: moveClouds 22s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>CLIMA SENSE</h1>
+    
+    <form action="/" method="POST">
+        <label for="hour">Hour:</label>
+        <input type="number" name="hour" id="hour" min="0" max="23" required><br><br>
+        
+        <label for="day">Day:</label>
+        <input type="number" name="day" id="day" min="1" max="31" required><br><br>
+        
+        <label for="month">Month:</label>
+        <select name="month" id="month" required>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select><br><br>
+        
+        <label for="year">Year:</label>
+        <input type="number" name="year" id="year" min="1900" max="2099" required><br><br>
+        
+        <input type="submit" value="Predict">
+    </form>
+    
+    {% if prediction %}
+        <h2>Sunrise Time: {{ prediction.sunrise }}</h2>
+        <h2>Sunset Time: {{ prediction.sunset }}</h2>
+        <h2>Humidity: {{ prediction.humidity }}</h2>
+        <h2>Temperature: {{ prediction.temperature }}</h2>
+    {% endif %}
+
+    <!-- Cloud Animation -->
+    <div class="cloud x1"></div>
+    <div class="cloud x2"></div>
+    <div class="cloud x3"></div>
+    <div class="cloud x4"></div>
+    <div class="cloud x5"></div>
+</body>
+</html>
